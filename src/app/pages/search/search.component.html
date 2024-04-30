@@ -1,0 +1,50 @@
+<div class="flex flex-col min-h-screen bg-gray-100">
+    <div class="flex justify-center py-8 ">
+      <div class="w-full max-w-3xl rounded-lg bg-white shadow-md p-4 flex">
+        <input
+          [(ngModel)]="searchTerm"
+          (keyup)="search()"
+          type="text"
+          placeholder="Search..."
+          class="w-full px-3 py-2 rounded-xl bg-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-opacity-50"
+        />
+        <button
+          (click)="search()"
+          class="ml-2 py-3 px-3 text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 rounded-xl"
+        >
+          Search
+        </button>
+      </div>
+    </div>
+    <!-- if result found-->
+    <div class="flex-grow overflow-y-auto px-8 py-4">
+      
+      <!-- <ul *ngIf="searchResults!='' " class="list-disc space-y-2">
+        <li *ngFor="let result of searchResults">{{ result }}</li>
+      </ul> -->
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-4">
+        <div *ngFor="let result of searchResults" class="bg-white rounded-lg shadow-md p-4 flex hover:cursor-pointer " (click)="goToBookingPages(result)">
+          <!-- Left side (image) -->
+          <div class="mr-5">
+            <!-- Replace 'imageUrl' with the property that holds the image URL -->
+            <img [src]="imageUrl" alt="Image" class="object-cover rounded-lg">
+          </div>
+          <!-- Right side (other properties) -->
+          <div class="lg:ml-9">
+            <!-- Display other properties -->
+            <h3 class="text-xl font-semibold lg:mt-3">{{ result.locality }}, {{ result.city }}</h3>
+            <p class="text-gray-600 lg:mt-3">{{ result.state }}, {{ result.pincod }}</p>
+            <p class="text-gray-600 lg:mt-3">Available: {{ result.available }}</p>
+            <!-- You can add more properties as needed -->
+            <a [href]="result.mapLink" target="_blank" class="text-blue-500 hover:underline lg:mt-3">View on Map</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- if no result found-->
+      <p *ngIf="searchResults== '' && searchTerm.length > 0" class="text-gray-500">
+        No results found for "{{ searchTerm }}"
+      </p>
+    </div>
+  </div>
