@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Route, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-showbooking',
@@ -19,11 +20,13 @@ export class ShowbookingComponent {
   // }
   imageUrl:string="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ0TAaRPZV1z1azBh2TnWhOHb0hofWtLCOxDw&s"
 
-  constructor(private router:ActivatedRoute){
+  constructor(private router:ActivatedRoute,private toast:ToastrService){
   this.router.queryParams.subscribe(param=>{
     this.bookSlot=param
-    console.log("bookd slot "+this.bookSlot.locality);
   })
+  this.showSuccessToast();
   }
-
+  showSuccessToast(){
+    this.toast.success('Slot Booked !');
+  }
 }

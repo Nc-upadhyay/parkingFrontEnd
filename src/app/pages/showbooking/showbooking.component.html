@@ -1,4 +1,3 @@
-<h1>Your booking</h1>
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-4 mt-5">
     <div  class="bg-white rounded-lg shadow-md p-4 flex hover:cursor-pointer ">
       <!-- Left side (image) -->
@@ -11,7 +10,7 @@
         <!-- Display other properties -->
         <h3 class="text-xl font-semibold lg:mt-3">{{ bookSlot.locality }}, {{ bookSlot.city }}</h3>
         <p class="text-gray-600 lg:mt-3">{{ bookSlot.state }}, {{ bookSlot.pincod }}</p>
-        <p class="text-gray-600 lg:mt-3">Available: {{ bookSlot.available }}</p>
+        <p class="text-gray-600 lg:mt-3 ">Your Slot is booked</p>
         <!-- You can add more properties as needed -->
         <a [href]="bookSlot.mapLink" target="_blank" class="text-blue-500 hover:underline lg:mt-3">View on Map</a>
       </div>

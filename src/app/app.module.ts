@@ -9,6 +9,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { BookSlotComponent } from './pages/book-slot/book-slot.component';
 import { ShowbookingComponent } from './pages/showbooking/showbooking.component';
 import { NgxUiLoaderHttpModule, NgxUiLoaderModule, NgxUiLoaderRouterModule } from 'ngx-ui-loader';
+import { provideToastr, ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule, provideAnimations } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -26,9 +28,20 @@ import { NgxUiLoaderHttpModule, NgxUiLoaderModule, NgxUiLoaderRouterModule } fro
     NgxUiLoaderRouterModule,//loader start when navigate route
     NgxUiLoaderHttpModule.forRoot({
       showForeground: true
-    }) // loader start when http api call
+    }),// loader start when http api call
+    ToastrModule.forRoot(),//ToastrModule added
+    BrowserAnimationsModule //required for animation module
   ],
-  providers: [],
+  providers: [
+    provideAnimations(),
+    provideToastr({
+      timeOut: 4000,
+      positionClass: 'toast-top-right',
+      preventDuplicates: true,
+      progressBar:true,
+  
+    })
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
